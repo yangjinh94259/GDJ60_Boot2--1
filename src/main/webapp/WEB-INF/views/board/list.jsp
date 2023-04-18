@@ -50,10 +50,74 @@
                     			</c:forEach>
                     		</tbody>
                     	</table>
+                    	
                     </div>
                     
                     </div>
                     </section>
+                    
+                    <div class="row">
+		<nav aria-label="Page navigation example">
+		  <ul class="pagination">
+		  
+		  
+		     <li class="page-item ${pager.before ? 'disabled' : ''}">
+		      <a class="page-link" href="./list?page=1&kind=${pager.kind}&search=${pager.search}" aria-label="Previous">
+		        <span aria-hidden="true">&laquo;</span>
+		      </a>
+		    </li>
+		  
+		  
+		    <li class="page-item ${pager.before ? 'disabled' : ''}">
+		      <a class="page-link" href="./list?page=${pager.startNum-1}&kind=${pager.kind}&search=${pager.search}" aria-label="Previous">
+		        <span aria-hidden="true">&lsaquo;</span>
+		      </a>
+		    </li>
+		    
+		    
+		    <c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+		    	<li class="page-item"><a class="page-link" href="./list?page=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
+		    </c:forEach>
+		    
+		    
+		     <li class="page-item ${pager.after eq false ? 'disabled' : ''}">
+		      <a class="page-link"  href="./list?page=${pager.lastNum+1}&kind=${pager.kind}&search=${pager.search}" aria-label="Next">
+		        <span aria-hidden="true">&rsaquo;</span>
+		      </a>
+		    </li>
+		    
+		    
+		    <li class="page-item ${pager.after eq false ? 'disabled' : ''}">
+		      <a class="page-link"  href="./list?page=${pager.totalPage}&kind=${pager.kind}&search=${pager.search}" aria-label="Next">
+		        <span aria-hidden="true">&raquo;</span>
+		      </a>
+		    </li>
+		    
+		    
+		  </ul>
+		</nav>
+		</div>
+			
+			
+			<!-- 검색창 -->
+			<div class="row">
+				<form class="row g-3" action="./list" method="get">
+				  <div class="col-auto">
+				    <label for="kind" class="visually-hidden">Kind</label>
+				    <select class="form-select" name="kind" id="kind" aria-label="Default select example">
+						<option value="title">제품명</option>
+						<option value="info">제품내용</option>
+					  </select>
+				  </div>
+				  <div class="col-auto">
+				    <label for="search" class="visually-hidden">Search</label>
+				    <input type="text" class="form-control" name="search" id="search" placeholder="검색어를 입력하세요">
+				  </div>
+				  <div class="col-auto">
+				    <button type="submit" class="btn btn-primary mb-3">검색</button>
+				  </div>
+				</form>
+			</div>
         
        	 <!-- Footer 적용 -->
        		<c:import url="../temp/footer.jsp"></c:import>

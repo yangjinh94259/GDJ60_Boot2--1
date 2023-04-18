@@ -16,7 +16,35 @@ public class Pager {
 	//시작 index 번호
 	private Long startRow;
 	
-	public void makeNum() {
+	private String kind;
+	
+	private String search;
+	
+	private Long startNum;
+	private Long lastNum;
+	
+	public void makeNum(Long totalCount) {
+		Long totalPage = totalCount / this.getPerPage();
+		if(totalCount % this.getPerPage() != 0) {
+			totalPage++;
+		}
+		
+		Long totalBlock = totalPage / 5;
+		if(totalPage % 5 != 0) {
+			totalBlock++;
+		}
+		
+		Long curBlock = this.getPage() / 5;
+		if(this.getPage() % 5 != 0) {
+			curBlock++;
+		}
+		
+		startNum = (curBlock-1)*5+1 ;
+		lastNum = curBlock * 5;
+		
+		if(curBlock == totalBlock) {
+			lastNum = totalPage;
+		}
 		
 	}
 	
@@ -42,6 +70,10 @@ public class Pager {
 		}
 		
 		return this.perPage;
+	}
+	
+	public String getSearch() {
+		if(this.search)
 	}
 	
 }

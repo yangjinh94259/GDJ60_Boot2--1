@@ -39,4 +39,9 @@
   		LIMIT #{startRow}, #{perPage}
   	</select>
   	
+  	<select id="getTotalCount" parameterType="Pager" resultType="Long">
+  		SELECT COUNT(NUM) FROM NOTICE
+  		<include refid="search"></include>
+  	</select>
+  	
   </mapper>
