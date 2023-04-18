@@ -44,7 +44,7 @@
                     					<td>${boardVO.num}</td>
                     					<td>${boardVO.title}</td>
                     					<td>${boardVO.name}</td>
-                    					<td>${boardVO.wDate}</td>
+                    					<td>${boardVO.regDate}</td>
                     					<td>${boardVO.hit}</td>
                     				</tr>
                     			</c:forEach>
@@ -53,20 +53,16 @@
                     	
                     </div>
                     
-                    </div>
-                    </section>
                     
-                    <div class="row">
+      <div class="row justify-content-center">
 		<nav aria-label="Page navigation example">
 		  <ul class="pagination">
-		  
-		  
+		 
 		     <li class="page-item ${pager.before ? 'disabled' : ''}">
 		      <a class="page-link" href="./list?page=1&kind=${pager.kind}&search=${pager.search}" aria-label="Previous">
 		        <span aria-hidden="true">&laquo;</span>
 		      </a>
 		    </li>
-		  
 		  
 		    <li class="page-item ${pager.before ? 'disabled' : ''}">
 		      <a class="page-link" href="./list?page=${pager.startNum-1}&kind=${pager.kind}&search=${pager.search}" aria-label="Previous">
@@ -74,26 +70,22 @@
 		      </a>
 		    </li>
 		    
-		    
 		    <c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
 		    	<li class="page-item"><a class="page-link" href="./list?page=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
 		    </c:forEach>
-		    
 		    
 		     <li class="page-item ${pager.after eq false ? 'disabled' : ''}">
 		      <a class="page-link"  href="./list?page=${pager.lastNum+1}&kind=${pager.kind}&search=${pager.search}" aria-label="Next">
 		        <span aria-hidden="true">&rsaquo;</span>
 		      </a>
 		    </li>
-		    
-		    
+		   
 		    <li class="page-item ${pager.after eq false ? 'disabled' : ''}">
 		      <a class="page-link"  href="./list?page=${pager.totalPage}&kind=${pager.kind}&search=${pager.search}" aria-label="Next">
 		        <span aria-hidden="true">&raquo;</span>
 		      </a>
 		    </li>
-		    
-		    
+	
 		  </ul>
 		</nav>
 		</div>
@@ -105,8 +97,8 @@
 				  <div class="col-auto">
 				    <label for="kind" class="visually-hidden">Kind</label>
 				    <select class="form-select" name="kind" id="kind" aria-label="Default select example">
-						<option value="title">제품명</option>
-						<option value="info">제품내용</option>
+						<option value="title">제목</option>
+						<option value="info">내용</option>
 					  </select>
 				  </div>
 				  <div class="col-auto">
@@ -118,7 +110,9 @@
 				  </div>
 				</form>
 			</div>
-        
+           </div>
+         </section>
+
        	 <!-- Footer 적용 -->
        		<c:import url="../temp/footer.jsp"></c:import>
       	 <!-- Footer 끝 -->

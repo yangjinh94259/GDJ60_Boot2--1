@@ -19,7 +19,7 @@
 	  </sql>
   	
   	<insert id="setInsert" parameterType="BoardVO">
-  		INSERT INTO NOTICE (TITLE, INFO, NAME, WDATE, HIT)
+  		INSERT INTO NOTICE (TITLE, INFO, NAME, REGDATE, HIT)
   		VALUES(#{title}, #{info}, #{name}, now(), 0)
   	</insert>
   	

@@ -13,7 +13,7 @@ public class BoardVO {
 	private String title;
 	private String info;
 	private String name;
-	private Date wDate;
+	private Date regDate;
 	private Long hit;
 	
 }
