@@ -11,13 +11,13 @@
         <meta name="author" content="" />
         <title>Modern Business - Start Bootstrap Template</title>
         <!-- css, favicon -->
-      <%--   <c:import url="./temp/style.jsp"></c:import> --%>
+      <c:import url="./temp/style.jsp"></c:import>
         <!-- css, favicon -->
     </head>
     <body class="d-flex flex-column h-100">
         <main class="flex-shrink-0">
             <!-- Navigation-->
-           <%--  <c:import url="./temp/header.jsp"></c:import> --%>
+           	<c:import url="./temp/header.jsp"></c:import>
             <!-- Header-->
             <header class="bg-dark py-5">
                 <div class="container px-5">
@@ -184,7 +184,7 @@
             </section>
         </main>
         <!-- Footer -->
-        <%-- <c:import url="./temp/footer.jsp"></c:import> --%>
+        <c:import url="./temp/footer.jsp"></c:import>
         <!-- Footer -->
     </body>
 </html>

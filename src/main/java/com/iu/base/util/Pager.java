@@ -16,6 +16,10 @@ public class Pager {
 	//시작 index 번호
 	private Long startRow;
 	
+	public void makeNum() {
+		
+	}
+	
 	//시작 index 번호를 계산하는 메서드
 	public void makeStartRow() {
 		//page = 1, startRow = 0
