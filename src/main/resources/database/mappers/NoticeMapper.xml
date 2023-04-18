@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.iu.base.board.notice.NoticeDAO">
+	  <sql id="search">
+	  	<where>
+	  		<if test="kind == 'title'">
+	  			TITLE LIKE CONCAT('%', #{search}, '%')
+	  		</if>
+	  		<if test="kind == 'info'">
+	  			INFO LIKE CONCAT('%', #{search}, '%')
+	  		</if>
+	  		<if test="kind == 'name'">
+	  			NAME LIKE CONCAT('%', #{search}, '%')
+	  		</if>
+	  	</where>
+	  </sql>
+  	
+  	<insert id="setInsert" parameterType="com.iu.base.board.BoardVO">
+  		INSERT INTO NOTICE (TITLE, INFO, NAME, WDATE, HIT)
+  		VALUES(#{title}, #{info}, #{name}, now(), 0)
+  	</insert>
+  	
+  	<update id="setUpdate" parameterType="com.iu.base.board.BoardVO">
+  		UPDATE NOTICE SET TITLE = #{title}, INFO = #{info}, NAME = #{name}
+  		WHERE NUM = #{num}
+  	</update>
+  	
+  	<delete id="setDelete" parameterType="com.iu.base.board.BoardVO">
+  		DELETE FROM NOTICE WHERE NUM = #{num}
+  	</delete>
+  	
+  	<select id="getList" parameterType="Pager" resultType="NoticeVO">
+  		SELECT * FROM NOTICE
+  		<include refid="search"></include>
+  		ORDER BY NUM DESC
+  		LIMIT #{startRow}, #{perPage}
+  	</select>
+  	
+  </mapper>
