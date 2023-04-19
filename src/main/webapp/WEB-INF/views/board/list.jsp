@@ -42,7 +42,7 @@
                     			<c:forEach items="${list}" var="boardVO">
                     				<tr>
                     					<td>${boardVO.num}</td>
-                    					<td>${boardVO.title}</td>
+                    					<td><a href="./detail?num=${boardVO.num}">${boardVO.title}</a></td>
                     					<td>${boardVO.name}</td>
                     					<td>${boardVO.regDate}</td>
                     					<td>${boardVO.hit}</td>
@@ -58,13 +58,13 @@
 		<nav aria-label="Page navigation example">
 		  <ul class="pagination">
 		 
-		     <li class="page-item ${pager.before ? 'disabled' : ''}">
+		     <li class="page-item ${pager.before  eq false ? 'disabled' : ''}">
 		      <a class="page-link" href="./list?page=1&kind=${pager.kind}&search=${pager.search}" aria-label="Previous">
 		        <span aria-hidden="true">&laquo;</span>
 		      </a>
 		    </li>
 		  
-		    <li class="page-item ${pager.before ? 'disabled' : ''}">
+		    <li class="page-item ${pager.before  eq false ? 'disabled' : ''}">
 		      <a class="page-link" href="./list?page=${pager.startNum-1}&kind=${pager.kind}&search=${pager.search}" aria-label="Previous">
 		        <span aria-hidden="true">&lsaquo;</span>
 		      </a>
@@ -99,6 +99,7 @@
 				    <select class="form-select" name="kind" id="kind" aria-label="Default select example">
 						<option value="title">제목</option>
 						<option value="info">내용</option>
+						<option value="name">작성자</option>
 					  </select>
 				  </div>
 				  <div class="col-auto">
@@ -113,9 +114,11 @@
            </div>
          </section>
 
+		<a href="./add">WRITE</a>
+
+        </main>
        	 <!-- Footer 적용 -->
        		<c:import url="../temp/footer.jsp"></c:import>
       	 <!-- Footer 끝 -->
-        </main>
 </body>
 </html>

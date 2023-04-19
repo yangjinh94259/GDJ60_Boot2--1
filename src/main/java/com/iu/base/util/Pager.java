@@ -21,6 +21,12 @@ public class Pager {
    //검색어
    private String search;
    
+   //이전 블럭의 유뮤
+   private boolean per;	//false 이전 x, true o
+   
+   //다음 블럭의 유무
+   private boolean next; 	//false 다음 x, true o
+   
    //한 블럭당 출력할 번호의 갯수
    private Long perBlock;
    

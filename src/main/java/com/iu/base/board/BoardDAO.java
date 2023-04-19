@@ -18,6 +18,11 @@ public interface BoardDAO {
 	//글쓰기
 	public int setInsert(BoardVO boardVO) throws Exception;
 	
+	public int setFileInsert(BoardFileVO boardFileVO) throws Exception;
+	
+	//파일 조회
+	public BoardFileVO getFileDetail(BoardFileVO boardFileVO) throws Exception;
+	
 	//글 수정
 	public int setUpdate(BoardVO boardVO) throws Exception;
 	

@@ -18,9 +18,14 @@
 	  	</where>
 	  </sql>
   	
-  	<insert id="setInsert" parameterType="BoardVO">
-  		INSERT INTO NOTICE (TITLE, INFO, NAME, REGDATE, HIT)
-  		VALUES(#{title}, #{info}, #{name}, now(), 0)
+  	<insert id="setInsert" parameterType="BoardVO" useGeneratedKeys="true" keyProperty="num">
+  		INSERT INTO NOTICE (NUM, TITLE, INFO, NAME, REGDATE, HIT)
+  		VALUES(#{num}, #{title}, #{info}, #{name}, now(), 0)
+  	</insert>
+  	
+  	<insert id="setFileInsert" parameterType="BoardFileVO">
+  		INSERT INTO NOTICEFILES (NUM, FILENAME, ORINAME)
+  		VALUES(#{num}, #{fileName}, #{oriName})
   	</insert>
   	
   	<update id="setUpdate" parameterType="BoardVO">
@@ -42,6 +47,35 @@
   	<select id="getTotalCount" parameterType="Pager" resultType="Long">
   		SELECT COUNT(NUM) FROM NOTICE
   		<include refid="search"></include>
+  	</select>
+  	
+  	<select id="getDetail" parameterType="BoardVO" resultMap="getDetailResult">
+  		SELECT *
+		FROM NOTICE N
+			LEFT JOIN
+			NOTICEFILES NF
+			USING(NUM)
+		WHERE NUM=#{num}
+  	</select>
+  	
+  	<resultMap type="NoticeVO" id="getDetailResult">
+  		<id property="num" column="NUM" />
+  		<result property="title" column="TITLE"></result>
+  		<result property="name" column="NAME"></result>
+  		<result property="info" column="INFO"></result>
+  		<result property="regDate" column="REGDATE"></result>
+  		<result property="hit" column="HIT"></result>
+  		
+  		<collection property="boardFileVOs" javaType="List" ofType="BoardFileVO">
+  			<id property="fileNum" column="FILENUM" />
+  			<result property="fileName" column="FILENAME"></result>
+  			<result property="oriName" column="ORINAME"></result>
+  		</collection>
+  	</resultMap>
+  	
+  	<select id="getFileDetail" parameterType="BoardFileVO" resultType="BoardFileVO">
+  		SELECT * FROM NOTICEFILES
+  		WHERE FILENUM=#{fileNum}
   	</select>
   	
   </mapper>
