@@ -29,4 +29,6 @@ public interface BoardDAO {
 	//글삭제
 	public int setDelete(BoardVO boardVO) throws Exception;
 	
+	public int setRef(BoardVO boardVO) throws Exception;
+	
 }

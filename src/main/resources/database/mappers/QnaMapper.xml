@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.iu.base.board.qna.QnaDAO">
+  	<sql id="search">
+  		<where>
+  			<if test="kind == 'title'">
+  				TITLE LIKE CONCAT('%', #{search}, '%')
+  			</if>
+  			<if test="kind == 'info'">
+  				INFO LIKE CONCAT('%', #{search}, '%')
+  			</if>
+  			<if test="kind == 'name'">
+  				NAME LIKE CONCAT('%', #{search}, '%')
+  			</if>
+  		</where>
+  	</sql>
+  	
+  	<insert id="setInsert" parameterType="QnaVO" useGeneratedKeys="true" keyProperty="num">
+  		INSERT INTO QNA (NUM, TITLE, INFO, NAME, REGDATE, HIT, REF, STEP, DEPTH)
+  		VALUES(#{num}, #{title}, #{info}, #{name}, now(), 0, 0, 0, 0)
+  	</insert>
+  	
+  	<update id="setRef" parameterType="QnaVO" useGeneratedKeys="true" keyProperty="num">
+  		UPDATE QNA SET REF = #{num}
+  	</update>
+  	
+  	<insert id="setFileInsert" parameterType="BoardFileVO">
+  		INSERT INTO QNAFILES (NUM, FILENAME, ORINAME)
+  		VALUES(#{num}, #{fileName}, #{oriName})
+  	</insert>
+  	
+  	<select id="getList" parameterType="Pager" resultType="QnaVO">
+  		SELECT * FROM QNA
+  		<include refid="search"></include>
+  		ORDER BY NUM DESC
+  		LIMIT #{startRow}, #{perPage}
+  	</select>
+  	
+  	<select id="getTotalCount" parameterType="Pager" resultType="Long">
+  		SELECT COUNT(NUM) FROM QNA
+  		<include refid="search"></include>
+  	</select>
+  	
+  	<select id="getDetail" parameterType="BoardVO" resultMap="getDetailResult">
+  		SELECT *
+		FROM QNA Q
+			LEFT JOIN
+			QNAFILES QF
+			USING(NUM)
+		WHERE NUM=#{num}
+  	</select>
+  	
+  	<resultMap type="QnaVO" id="getDetailResult">
+  		<id property="num" column="NUM" />
+  		<result property="title" column="TITLE"></result>
+  		<result property="name" column="NAME"></result>
+  		<result property="info" column="INFO"></result>
+  		<result property="regDate" column="REGDATE"></result>
+  		<result property="hit" column="HIT"></result>
+  		<result property="ref" column="REG"></result>
+  		<result property="step" column="STEP"></result>
+  		<result property="depth" column="DEPTH"></result>
+  		
+  		<collection property="boardFileVOs" javaType="List" ofType="BoardFileVO">
+  			<id property="fileNum" column="FILENUM" />
+  			<result property="fileName" column="FILENAME"></result>
+  			<result property="oriName" column="ORINAME"></result>
+  		</collection>
+  	</resultMap>
+  	
+  	<select id="getFileDetail" parameterType="BoardFileVO" resultType="BoardFileVO">
+  		SELECT * FROM QNAFILES
+  		WHERE FILENUM=#{fileNum}
+  	</select>
+  	
+  </mapper>

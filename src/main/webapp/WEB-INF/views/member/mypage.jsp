@@ -28,7 +28,7 @@
                             <div class="d-flex align-items-center mt-lg-5 mb-4">
                                 <img class="img-fluid rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." />
                                 <div class="ms-3">
-                                    <div class="fw-bold">${boardVO.name}</div>
+                                    <div class="fw-bold">${memberVO.name}</div>
                                     <div class="text-muted">News, Business</div>
                                 </div>
                             </div>
@@ -39,24 +39,13 @@
                                 <!-- Post header-->
                                 <header class="mb-4">
                                     <!-- Post title-->
-                                    <h1 class="fw-bolder mb-1">${boardVO.title}</h1>
+                                    <h1 class="fw-bolder mb-1">${memberVO.userName}</h1>
                                     <!-- Post meta content-->
                                     <div class="text-muted fst-italic mb-2">${boardVO.regDate}</div>
                                     <!-- Post categories-->
                                     <a class="badge bg-secondary text-decoration-none link-light" href="#!">Web Design</a>
                                     <a class="badge bg-secondary text-decoration-none link-light" href="#!">Freebies</a>
                                 </header>
-                                <!-- Preview image figure-->
-                                <figure class="mb-4"><img class="img-fluid rounded" src="https://dummyimage.com/900x400/ced4da/6c757d.jpg" alt="..." /></figure>
-                                <!-- Post content-->
-                                <section class="mb-5">
-                                    ${boardVO.info}
-                                    
-                                    <c:forEach items="${boardVO.boardFileVOs}" var="boardFileVO">
-                                    	<img alt="" src="/file/${board}/${boardFileVO.fileName}">
-                                    	<a href="./fileDown?fileNum=${boardFileVO.fileNum}">${boardFileVO.oriName}</a>
-                                    </c:forEach>
-                                </section>
                             </article>
                             <!-- Comments section-->
                             <section>

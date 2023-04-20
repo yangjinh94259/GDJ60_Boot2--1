@@ -1,11 +1,10 @@
-package com.iu.base.board.notice;
+package com.iu.base.board.qna;
 
 import org.apache.ibatis.annotations.Mapper;
-
 
 import com.iu.base.board.BoardDAO;
 
 @Mapper
-public interface NoticeDAO extends BoardDAO{
+public interface QnaDAO extends BoardDAO {
 
 }
