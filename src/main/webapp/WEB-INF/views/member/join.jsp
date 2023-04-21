@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -10,9 +10,9 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Modern Business - Start Bootstrap Template</title>
-        <!-- favicon Àû¿ë -->
+        <!-- favicon ì ìš© -->
         <c:import url="../temp/style.jsp"></c:import>
-        <!-- favicon ³¡ -->
+        <!-- favicon ë -->
     </head>
 </head>
  		<body class="d-flex flex-column h-100">
@@ -41,7 +41,7 @@
                                 <form id="contactForm" action="./join" method="post" data-sb-form-api-token="API_TOKEN">
                                     <!-- Name input-->
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="userName" name="userName" type="text" placeholder="Enter your userName..." data-sb-validations="required" />
+                                        <input class="form-control" id="userName" name="userName" type="text" required="required" placeholder="Enter your userName..." data-sb-validations="required" />
                                         <label for="userName">User Name</label>
                                         <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
                                     </div>
@@ -49,6 +49,12 @@
                                     <div class="form-floating mb-3">
                                         <input class="form-control" id="password" name="password" type="password"  data-sb-validations="required,email" />
                                         <label for="password">PassWord</label>
+                                        <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
+                                        <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" id="passwordCheck" name="passwordCheck" type="password"  data-sb-validations="required,email" />
+                                        <label for="passwordCheck">PassWord Check</label>
                                         <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
                                         <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
                                     </div>
@@ -100,8 +106,10 @@
             </section>
         
         </main>
-       	 <!-- Footer Àû¿ë -->
+       	 <!-- Footer ì ìš© -->
        		<c:import url="../temp/footer.jsp"></c:import>
-      	 <!-- Footer ³¡ -->
+      	 <!-- Footer ë -->
+      	 
+      	 <script type="text/javascript" src="../js/joinFormCheck.js"></script>
 </body>
 </html>

@@ -1,5 +1,9 @@
 package com.iu.base.member;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.iu.base.board.notice.NoticeController;
@@ -18,10 +23,27 @@ import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @RequestMapping("/member/*")
+@Slf4j
 public class MemberController {
 
 	@Autowired
 	private MemberService memberService;
+	
+	@GetMapping("idDuplicateCheck")
+	@ResponseBody
+	public boolean idDuplicateCheck(MemberVO memberVO) throws Exception{
+		log.debug("==========ID 중복 체크=============");
+		
+		memberVO = memberService.idDuplicateCheck(memberVO);
+		
+		boolean check = false;
+		
+		if(memberVO == null) {
+			check = true;
+		}
+		
+		return check;
+	}
 	
 	@GetMapping("login")
 	public ModelAndView getLogin() throws Exception{
@@ -59,14 +81,28 @@ public class MemberController {
 	}
 	
 	@PostMapping("join")
-	public String setJoin(MemberVO memberVO) throws Exception{
+	public ModelAndView setJoin(MemberVO memberVO) throws Exception{
+		ModelAndView mv = new ModelAndView();
 		int result = memberService.setJoin(memberVO);
 		System.out.println(result == 1);
-		return "redirect:../";
+		
+		mv.setViewName("redirect:../");
+		return mv;
 	}
 	
 	@GetMapping("mypage")
 	public ModelAndView getMyPage(HttpSession session) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		MemberVO memberVO = (MemberVO) session.getAttribute("member");
+		
+		memberVO = memberService.getMyPage(memberVO);
+		mv.addObject("memberVO", memberVO);
+		mv.setViewName("member/mypage");
+		return mv;
+	}
+	
+	@GetMapping("admin")
+	public ModelAndView getAdmin(HttpSession session) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		MemberVO memberVO = (MemberVO) session.getAttribute("member");
 		

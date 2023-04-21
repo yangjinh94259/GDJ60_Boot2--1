@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -10,9 +10,9 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Modern Business - Start Bootstrap Template</title>
-        <!-- favicon Àû¿ë -->
+        <!-- favicon ì ìš© -->
         <c:import url="../temp/style.jsp"></c:import>
-        <!-- favicon ³¡ -->
+        <!-- favicon ë -->
     </head>
 </head>
  		<body class="d-flex flex-column h-100">
@@ -84,8 +84,8 @@
             </section>
         
         </main>
-       	 <!-- Footer Àû¿ë -->
+       	 <!-- Footer ì ìš© -->
        		<c:import url="../temp/footer.jsp"></c:import>
-      	 <!-- Footer ³¡ -->
+      	 <!-- Footer ë -->
 </body>
 </html>

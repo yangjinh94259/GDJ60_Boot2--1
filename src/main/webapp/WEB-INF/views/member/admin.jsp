@@ -19,7 +19,7 @@
         <main class="flex-shrink-0">
         <!-- Navigation-->
             <c:import url="../temp/header.jsp"></c:import>
-        <h1>MyPage</h1>
+        <h1>AdminPage</h1>
         		 <!-- Page Content-->
             <section class="py-5">
                 <div class="container px-5 my-5">
