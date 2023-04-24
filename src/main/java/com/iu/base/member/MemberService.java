@@ -31,6 +31,14 @@ public class MemberService {
 			bindingResult.rejectValue("passwordCheck", "member.password.notEqual");
 		}
 		
+		MemberVO check = memberDAO.idDuplicateCheck(memberVO);
+		
+		//3. ID중복 검사
+		if(check != null) {
+				result = true;
+				bindingResult.rejectValue("userName", "member.userName.equal");
+		}
+		
 		return result;
 		
 	}
