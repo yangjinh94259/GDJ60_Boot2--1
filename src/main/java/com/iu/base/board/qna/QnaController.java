@@ -50,13 +50,13 @@ public class QnaController {
 	}
 	
 	@PostMapping("add")
-	public ModelAndView setInsert(QnaVO qnaVO, MultipartFile[] boardFiles) throws Exception{
+	public ModelAndView setInsert(BoardVO boardVO, MultipartFile[] boardFiles) throws Exception{
 		
 		for(MultipartFile multipartFile : boardFiles) {
 			log.info("OriginalName : {} Size : {}", multipartFile.getOriginalFilename(), multipartFile.getSize());
 		}
 		
-		int result = qnaService.setInsert(qnaVO, boardFiles);
+		int result = qnaService.setInsert(boardVO, boardFiles);
 		ModelAndView mv = new ModelAndView();
 		
 		mv.setViewName("redirect:./list");

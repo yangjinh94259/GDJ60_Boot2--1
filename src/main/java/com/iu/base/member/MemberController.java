@@ -8,10 +8,13 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -75,14 +78,26 @@ public class MemberController {
 	}
 	
 	@GetMapping("join")
-	public ModelAndView setJoin(ModelAndView mv) {
+	public ModelAndView setJoin(@ModelAttribute MemberVO memberVO) {
+		ModelAndView mv = new ModelAndView();
 		mv.setViewName("member/join");
+		mv.addObject(new MemberVO());
 		return mv;
 	}
 	
 	@PostMapping("join")
-	public ModelAndView setJoin(MemberVO memberVO) throws Exception{
+	public ModelAndView setJoin(@Valid MemberVO memberVO, BindingResult bindingResult) throws Exception{
 		ModelAndView mv = new ModelAndView();
+		
+		boolean check = memberService.passwordCheck(memberVO, bindingResult);
+		
+		if(check) {
+			log.warn("======검증 실패========");
+			mv.setViewName("member/join");
+			
+			return mv;
+		}
+		
 		int result = memberService.setJoin(memberVO);
 		System.out.println(result == 1);
 		

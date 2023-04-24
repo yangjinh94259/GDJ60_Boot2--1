@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.BindingResult;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -13,6 +14,26 @@ public class MemberService {
 
 	@Autowired
 	private MemberDAO memberDAO;
+	
+	//패스워드가 일치하는지 검증
+	public boolean passwordCheck(MemberVO memberVO, BindingResult bindingResult) throws Exception{
+		boolean result = false;
+		//false : error가 없음, 검증성공
+		//true면 : error가 실패, 검증실패
+		
+		result = bindingResult.hasErrors();
+		
+		//1. annotation 검증결과
+		
+		//2. password 일치검증
+		if(!memberVO.getPassword().equals(memberVO.getPasswordCheck())) {
+			result = true;
+			bindingResult.rejectValue("passwordCheck", "member.password.notEqual");
+		}
+		
+		return result;
+		
+	}
 	
 	public MemberVO idDuplicateCheck(MemberVO memberVO) throws Exception{
 		return memberDAO.idDuplicateCheck(memberVO);

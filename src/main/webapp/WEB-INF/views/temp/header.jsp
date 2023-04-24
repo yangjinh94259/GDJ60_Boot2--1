@@ -35,7 +35,9 @@
 		                            	<li class="nav-item"><a class="nav-link" href="/member/join">Join</a></li>                            		
                             		</c:otherwise>
                             	</c:choose>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
+                            	<li class="nav-item"><a class="nav-link" href="/?lang_opt=ko">KO</a></li>
+                            	<li class="nav-item"><a class="nav-link" href="/?lang_opt=en">EN</a></li>
+	                        </ul>
+	                    </div>
+	                </div>
+	            </nav>
