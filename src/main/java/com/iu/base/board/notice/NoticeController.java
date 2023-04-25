@@ -62,6 +62,16 @@ public class NoticeController {
 	public ModelAndView setInsert(@Valid BoardVO boardVO, BindingResult bindingResult,  MultipartFile[] boardFiles) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		
+		log.error("======{}=======", boardVO.getSubVO().getSubName());
+		
+		for(String n : boardVO.getNames()) {
+			log.error("======{}=======", n);
+		}
+		
+		for(BoardFileVO boardFileVO : boardVO.getBoardFileVOs()) {
+			log.error("======{}=======", boardFileVO.getFileName());
+		}
+		
 		if(bindingResult.hasErrors()) {
 			log.warn("======검증 실패========");
 			mv.setViewName("board/add");

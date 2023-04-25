@@ -45,6 +45,32 @@
                                         <label for="name">Writer</label>
                                         <form:errors path="name"></form:errors>
                                     </div>
+                                    
+                                    <div class="form-floating mb-3">
+                                        <form:input path="subVO.subName" id="name" cssClass="form-control"/>
+                                        <label for="name">SubName</label>
+                                    </div>
+                                    
+                                    <div class="form-floating mb-3">
+                                        <form:input path="names" id="name" cssClass="form-control"/>
+                                        <label for="name">Names</label>
+                                    </div>
+                                    
+                                    <div class="form-floating mb-3">
+                                        <form:input path="names" id="name" cssClass="form-control"/>
+                                        <label for="name">Names</label>
+                                    </div>
+                                    
+                                    <div class="form-floating mb-3">
+                                        <form:input path="boardFileVOs.get[0].fileName" id="name" cssClass="form-control"/>
+                                        <label for="name">BoardFileName</label>
+                                    </div>
+                                    
+                                    <div class="form-floating mb-3">
+                                        <form:input path="boardFileVOs.get[1].fileName" id="name" cssClass="form-control"/>
+                                        <label for="name">BoardFileName</label>
+                                    </div>
+                                    
                                     <!-- info input-->
                                     <div class="form-floating mb-3">
                                         <textarea class="form-control" id="info" name="info" placeholder="Enter info here..." style="height: 10rem" data-sb-validations="required"></textarea>
