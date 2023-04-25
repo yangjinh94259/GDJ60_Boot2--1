@@ -98,6 +98,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                            <a href="./delete?num=${boardVO.num}">글삭제</a>
                                 </div>
                             </section>
                         </div>

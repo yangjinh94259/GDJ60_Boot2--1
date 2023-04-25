@@ -20,9 +20,9 @@ import com.iu.base.util.Pager;
 
 import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Controller
 @RequestMapping("/notice/*")
-@Slf4j
 public class NoticeController {
 
 	@Autowired
@@ -97,6 +97,18 @@ public class NoticeController {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("boardFileVO", boardFileVO);
 		mv.setViewName("fileManager");
+		
+		return mv;
+	}
+	
+	@GetMapping("delete")
+	public ModelAndView setDelete(BoardVO boardVO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		int result = noticeService.setDelete(boardVO);
+		
+		
+		mv.setViewName("redirect:./list");
 		
 		return mv;
 	}

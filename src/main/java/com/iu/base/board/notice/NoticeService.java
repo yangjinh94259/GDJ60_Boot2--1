@@ -17,9 +17,9 @@ import com.iu.base.util.Pager;
 
 import lombok.extern.slf4j.Slf4j;
 
-@Service
+//@Transactional(rollbackFor = Exception.class)
 @Slf4j
-@Transactional(rollbackFor = Exception.class)
+@Service
 public class NoticeService implements BoardService{
 
 	@Autowired
@@ -49,7 +49,7 @@ public class NoticeService implements BoardService{
 	@Override
 	public int setDelete(BoardVO boardVO) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return noticeDAO.setDelete(boardVO);
 	}
 	
 	@Override
@@ -57,12 +57,12 @@ public class NoticeService implements BoardService{
 		int result = noticeDAO.setInsert(boardVO);
 		log.error("Num ---------> {}", boardVO.getNum());
 		
-		Random random = new Random();
-		int num = random.nextInt(1);
-		
-		if(num == 0) {
-			throw new Exception();
-		}
+//		Random random = new Random();
+//		int num = random.nextInt(1);
+//		
+//		if(num == 0) {
+//			throw new Exception();
+//		}
 		
 		if(multipartFiles != null) {
 			for(MultipartFile multipartFile:multipartFiles) {
