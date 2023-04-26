@@ -1,6 +1,7 @@
 package com.iu.base.member;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,6 +66,10 @@ public class MemberService {
 	
 	public MemberVO getMyPage(MemberVO memberVO)throws Exception{
 		return memberDAO.getLogin(memberVO);
+	}
+	
+	public int setLogout(MemberVO memberVO) throws Exception{
+		return memberDAO.setLogout(memberVO);
 	}
 	
 }

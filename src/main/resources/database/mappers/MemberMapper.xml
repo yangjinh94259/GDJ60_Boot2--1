@@ -5,6 +5,34 @@
   
   <mapper namespace="com.iu.base.member.MemberDAO">
 	  
+	  <select id="getBirth" resultType="MemberVO">
+	  	SELECT NAME FROM MEMBER
+		WHERE DATE_FORMAT(BIRTH, '%m-%d') = DATE_FORMAT(now(), '%m-%d')
+	  </select>
+	  
+	  <update id="setEnabled">
+		UPDATE MEMBER SET ENABLED = 0
+		WHERE USERNAME 
+		IN 
+			( SELECT userName FROM MEMBER 
+			  WHERE TIMESTAMPDIFF(DAY, lastTime, now()) >= 3)
+	<!--	
+		<![CDATA[  
+	 		UPDATE MEMBER SET ENABLED=0
+			WHERE LASTTIME <= now()-INTERVAL 3 DAY
+		]]>
+	 -->	
+		</update>
+	  
+	  <select id="getList" resultType="MemberVO">
+  		SELECT USERNAME FROM MEMBER
+  	  </select>
+  	  
+  	  <update id="setLogout" parameterType="MemberVO">
+  	  	UPDATE MEMBER SET LASTTIME = now()
+  	  	WHERE USERNAME = #{userName}
+  	  </update>
+	  
 	  <select id="idDuplicateCheck" parameterType="MemberVO" resultType="MemberVO">
 	  	SELECT USERNAME FROM MEMBER
 	  	WHERE USERNAME = #{userName}
