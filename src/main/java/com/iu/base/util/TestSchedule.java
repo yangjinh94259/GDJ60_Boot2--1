@@ -28,7 +28,7 @@ public class TestSchedule {
 	@Autowired
 	private MailManager mailManager;
 	
-	//@Scheduled(cron = "* * * * * *")
+//	@Scheduled(cron = "10 * * * * *")
 	public void test() throws Exception {
 	
 		List<MemberVO> ar= memberDAO.getBirth();
