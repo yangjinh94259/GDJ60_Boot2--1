@@ -14,7 +14,7 @@
 		UPDATE MEMBER SET ENABLED = 0
 		WHERE USERNAME 
 		IN 
-			( SELECT userName FROM MEMBER 
+			( SELECT USERNAME FROM MEMBER 
 			  WHERE TIMESTAMPDIFF(DAY, lastTime, now()) >= 3)
 	<!--	
 		<![CDATA[  
@@ -30,28 +30,29 @@
   	  
   	  <update id="setLogout" parameterType="MemberVO">
   	  	UPDATE MEMBER SET LASTTIME = now()
-  	  	WHERE USERNAME = #{userName}
+  	  	WHERE USERNAME = #{username}
   	  </update>
 	  
 	  <select id="idDuplicateCheck" parameterType="MemberVO" resultType="MemberVO">
 	  	SELECT USERNAME FROM MEMBER
-	  	WHERE USERNAME = #{userName}
+	  	WHERE USERNAME = #{username}
 	  </select>
 	  
 	  <select id="getLogin" parameterType="MemberVO" resultMap="getLoginResult">
-	  	SELECT M.USERNAME, M.NAME, M.EMAIL, R.NUM, R.ROLENAME
+	  	SELECT M.username, M.password, M.NAME, M.EMAIL, R.NUM, R.ROLENAME
 	  	FROM MEMBER M
 	  		INNER JOIN
 	  		MEMBERROLE MR
-	  		ON M.USERNAME = MR.USERNAME
+	  		ON M.username = MR.username
 	  		INNER JOIN
 	  		ROLE R
 	  		ON MR.NUM = R.NUM
-	  	WHERE M.USERNAME = #{userName} AND M.PASSWORD = #{password}
+	  	WHERE M.USERNAME = #{username}
 	  </select>
 	  
 	  <resultMap type="MemberVO" id="getLoginResult">
-	  	<id property="userName" column="USERNAME"/>
+	  	<id property="username" column="username"/>
+	  	<result property="password" column="PASSWORD"/>
 	  	<result property="email" column="EMAIL"/>
 	  	<collection property="roleVOs" javaType="List" ofType="RoleVO">
 	  		<id property="num" column="NUM"/>
@@ -61,12 +62,12 @@
 	  
 	  <insert id="setJoin" parameterType="MemberVO">
   		INSERT INTO MEMBER
-  		VALUES(#{userName}, #{password}, #{name}, #{email}, #{birth}, #{enabled})
+  		VALUES(#{username}, #{password}, #{name}, #{email}, #{birth}, 1, now())
   	</insert>
   	
   	<insert id="setRoleAdd" parameterType="Map">
   		INSERT INTO MEMBERROLE(USERNAME, NUM)
-  		VALUES(#{userName}, #{num})
+  		VALUES(#{username}, #{num})
   	</insert>
 	  
   </mapper>

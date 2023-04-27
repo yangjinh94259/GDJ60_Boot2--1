@@ -41,8 +41,8 @@
                                 <form id="contactForm" action="./login" method="post" data-sb-form-api-token="API_TOKEN">
                                     <!-- Name input-->
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="userName" name="userName" type="text" placeholder="Enter your userName..." data-sb-validations="required" />
-                                        <label for="userName">User Name</label>
+                                        <input class="form-control" id="username" name="username" type="text" placeholder="Enter your userName..." data-sb-validations="required" />
+                                        <label for="username">User Name</label>
                                         <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
                                     </div>
                                     <!-- pw address input-->

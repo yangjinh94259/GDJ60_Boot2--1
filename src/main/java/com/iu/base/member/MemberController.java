@@ -1,6 +1,7 @@
 package com.iu.base.member;
 
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -11,6 +12,8 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,6 +34,23 @@ public class MemberController {
 
 	@Autowired
 	private MemberService memberService;
+	
+	@GetMapping("info")
+	public void info(HttpSession session) {
+		log.error("=======Login Info=======");
+//		Enumeration<String> names = session.getAttributeNames();
+//		while(names.hasMoreElements()) {
+//			log.error("====={}=====", names.nextElement());
+//		}
+		Object obj = session.getAttribute("SPRING_SECURITY_CONTEXT");
+		SecurityContextImpl contextImpl = (SecurityContextImpl)obj;
+		Authentication authentication = contextImpl.getAuthentication();
+		
+		log.error("====={}=====",obj);
+		log.error("=====NAME : {}=====", authentication.getName());
+		log.error("=====Detail : {}=====", authentication.getDetails());
+		log.error("=====Principal : {}=====", authentication.getPrincipal());
+	}
 	
 	@GetMapping("idDuplicateCheck")
 	@ResponseBody

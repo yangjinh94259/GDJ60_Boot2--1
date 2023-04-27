@@ -24,8 +24,8 @@ public class InterceptorConfig implements WebMvcConfigurer{
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		
-//		registry.addInterceptor(localeChangeInterceptor)
-//				.addPathPatterns("/**");
+		registry.addInterceptor(localeChangeInterceptor)
+				.addPathPatterns("/**");
 		
 //		registry.addInterceptor(memberCheckInterceptor)
 //				.addPathPatterns("/member/mypage")
