@@ -41,6 +41,7 @@ public class MemberSocialService extends DefaultOAuth2UserService{
 	private OAuth2User socialJoinCheck(OAuth2UserRequest auth2UserRequest) {
 		//DB에서 조회 후 회원 추가 또는 회원 정보 조회
 		//kakao에서 받은 정보를 MemberVO로 변경
+		//kakao 로그인, Naver 로그인, Google 로그인 코드 수정 및 추가
 		OAuth2User user = super.loadUser(auth2UserRequest);
 		
 		Map<String, Object> map = user.getAttributes();
