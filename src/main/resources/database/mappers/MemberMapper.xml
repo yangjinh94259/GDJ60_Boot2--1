@@ -39,7 +39,7 @@
 	  </select>
 	  
 	  <select id="getLogin" parameterType="MemberVO" resultMap="getLoginResult">
-	  	SELECT M.username, M.password, M.NAME, M.EMAIL, R.NUM, R.ROLENAME
+	  	SELECT M.username, M.password, M.NAME, M.EMAIL, M.ENABLED, R.NUM, R.ROLENAME
 	  	FROM MEMBER M
 	  		INNER JOIN
 	  		MEMBERROLE MR
@@ -54,6 +54,7 @@
 	  	<id property="username" column="username"/>
 	  	<result property="password" column="PASSWORD"/>
 	  	<result property="email" column="EMAIL"/>
+	  	<result property="enabled" column="ENABLED"/>
 	  	<collection property="roleVOs" javaType="List" ofType="RoleVO">
 	  		<id property="num" column="NUM"/>
 	  		<result property="roleName" column="ROLENAME"/>
