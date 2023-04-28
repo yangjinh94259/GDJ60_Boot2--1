@@ -41,7 +41,7 @@
                                 <form id="contactForm" action="./login" method="post" data-sb-form-api-token="API_TOKEN">
                                     <!-- Name input-->
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="username" name="username" type="text" placeholder="Enter your userName..." data-sb-validations="required" />
+                                        <input class="form-control" id="username" value="${cookie.remember.value}" name="username" type="text" placeholder="Enter your userName..." data-sb-validations="required" />
                                         <label for="username">User Name</label>
                                         <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
                                     </div>
@@ -52,7 +52,13 @@
                                         <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
                                         <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
                                     </div>
-                                    <div class="d-grid"><button class="btn btn-primary btn-lg" id="submitButton" type="submit">Submit</button></div>
+                                    <div class="form-floating mb-3">
+                                        <input id="remember" name="remember" type="checkbox"  />
+                                        <label for="remember">ID기억하기</label>
+                                    </div>
+                                    <div class="d-grid">
+                                    	<button class="btn btn-primary btn-lg" id="submitButton" type="submit">Submit</button>
+                                    </div>
                                 </form>
                             </div>
                         </div>

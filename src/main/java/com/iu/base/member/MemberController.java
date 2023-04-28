@@ -69,9 +69,17 @@ public class MemberController {
 	}
 	
 	@GetMapping("login")
-	public ModelAndView getLogin() throws Exception{
+	public ModelAndView getLogin(HttpSession session) throws Exception{
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("member/login");
+		
+		Object obj = session.getAttribute("SPRING_SECURITY_CONTEXT");
+		
+		if(obj == null){
+			mv.setViewName("member/login");
+		}
+		else {
+			mv.setViewName("redirect:/");
+		}
 		
 		return mv;
 	}
