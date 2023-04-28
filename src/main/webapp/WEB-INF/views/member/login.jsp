@@ -37,6 +37,7 @@
                                 </c:if>
                                 
                                 <form id="contactForm" action="./login" method="post" data-sb-form-api-token="API_TOKEN">
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                                     <!-- Name input-->
                                     <div class="form-floating mb-3">
                                         <input class="form-control" id="username" value="${cookie.remember.value}" name="username" type="text" placeholder="Enter your userName..." data-sb-validations="required" />
@@ -57,6 +58,7 @@
                                     <div class="d-grid">
                                     	<button class="btn btn-primary btn-lg" id="submitButton" type="submit">Submit</button>
                                     </div>
+                                    <a href="/oauth2/authorization/kakao">Kakao Login</a>
                                 </form>
                             </div>
                         </div>
