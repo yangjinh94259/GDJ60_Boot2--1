@@ -19,13 +19,17 @@ import org.springframework.security.web.authentication.logout.LogoutSuccessHandl
 import com.iu.base.member.MemberService;
 import com.iu.base.member.MemberSocialService;
 import com.iu.base.security.UserLoginFailHandler;
+import com.iu.base.security.UserLogoutHandler;
 import com.iu.base.security.UserLogoutSuccessHandler;
 import com.iu.base.security.UserSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-   
+	
+   @Autowired
+   private UserLogoutSuccessHandler logoutSuccessHandler;
+	
    @Autowired
    private MemberSocialService memberSocialService;
    
@@ -44,8 +48,8 @@ public class SecurityConfig {
    SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
       httpSecurity
                .cors()
-//               .and()
-//               .csrf()
+               .and()
+               .csrf()
                .disable()
          
             .authorizeRequests()
@@ -72,7 +76,8 @@ public class SecurityConfig {
             .logout()
                .logoutUrl("/member/logout")
                // .logoutSuccessUrl("/")
-               .logoutSuccessHandler(new UserLogoutSuccessHandler())
+//               .addLogoutHandler(userLogoutHandler)
+               .logoutSuccessHandler(logoutSuccessHandler)
                .invalidateHttpSession(true)
                .deleteCookies("JSESSIONID")
                .permitAll()

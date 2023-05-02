@@ -54,10 +54,13 @@ public class MemberSocialService extends DefaultOAuth2UserService{
 			log.error("Value :: {}", map.get(key));
 		}
 		
-		HashMap<String, Object> m = (HashMap) map.get("properties");
+		HashMap<String, Object> m = (HashMap<String, Object>) map.get("properties");
 		log.error("NickName {} :: ",m.get("nickname"));
 		
 		MemberVO memberVO = new MemberVO();
+		
+		memberVO.setAttributes(map);
+		
 		memberVO.setUsername(m.get("nickname").toString());
 		
 		List<RoleVO> roleVOs = new ArrayList<>();
