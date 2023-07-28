@@ -55,7 +55,7 @@ public class SecurityConfig {
 //					.usernameParameter("userName")
 //					.defaultSuccessUrl("/")
 					.successHandler(new UserSuccessHandler())
-					.failureUrl("/member/login")
+//					.failureUrl("/member/login")
 					.permitAll()
 					.and()
 				.logout()

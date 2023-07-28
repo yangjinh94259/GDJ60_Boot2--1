@@ -17,7 +17,7 @@ import com.iu.base.util.Pager;
 
 import lombok.extern.slf4j.Slf4j;
 
-//@Transactional(rollbackFor = Exception.class)
+@Transactional(rollbackFor = Exception.class)
 @Slf4j
 @Service
 public class NoticeService implements BoardService{
